@@ -100,12 +100,32 @@ def connect_to_croxyproxy(driver, wallet_address):
 def check_balance(wallet_address):
     try:
         print("\nChecking wallet balance...")
-        api_url = f"https://api.suiscan.xyz/testnet/address/{wallet_address}/balance"
-        response = requests.get(api_url)
+        # Using official Sui testnet RPC endpoint
+        api_url = "https://fullnode.testnet.sui.io:443"
+        
+        # Prepare the JSON-RPC request
+        payload = {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "suix_getBalance",
+            "params": [wallet_address, "0x2::sui::SUI"]
+        }
+        
+        headers = {
+            'Content-Type': 'application/json'
+        }
+        
+        response = requests.post(api_url, json=payload, headers=headers)
         balance_data = response.json()
-        balance = balance_data['balance']
-        print(f"Current balance: {balance} SUI")
-        return balance
+        
+        if 'result' in balance_data:
+            balance = int(balance_data['result']['totalBalance']) / 1000000000  # Convert from MIST to SUI
+            print(f"Current balance: {balance} SUI")
+            return balance
+        else:
+            print("Could not fetch balance data")
+            return None
+            
     except Exception as e:
         print(f"Error checking balance: {e}")
         return None
