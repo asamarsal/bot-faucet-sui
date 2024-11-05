@@ -12,8 +12,8 @@ A Python-based automation tool for claiming SUI testnet tokens using Selenium We
 1. Python installed
 2. Google Chrome browser installed
 3. ChromeDriver matching your Chrome version
-   - Check your version of chrome to download same version.
-     `chrome://settings/help` put the link on chrome
+   - Check your version of chrome to download same version
+   - `chrome://settings/help` put the link on chrome
    - Download from: https://chromedriver.chromium.org/downloads
    - Place in `D:\Chromedriver\chromedriver-win64\chromedriver.exe`
 5. Required Python packages:
