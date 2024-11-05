@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from dotenv import load_dotenv
 import os
 import time
+import requests
 
 def load_display():
     try:
@@ -85,13 +86,31 @@ def connect_to_croxyproxy(driver, wallet_address):
             give_sui_button.click()
             print("Give me SUI! button clicked")
             print("Your wallet just get 1 sui testnet")
-
-            # Add delay before next iteration
+            time.sleep(5)
+            
+            # Check balance directly in CMD
+            check_balance(wallet_address)
+            
             time.sleep(5)
 
         except Exception as e:
             print(f"Operation error: {e}")
             break
+            
+def check_balance(wallet_address):
+    try:
+        print("\nChecking wallet balance...")
+        api_url = f"https://api.suiscan.xyz/testnet/address/{wallet_address}/balance"
+        response = requests.get(api_url)
+        balance_data = response.json()
+        balance = balance_data['balance']
+        print(f"Current balance: {balance} SUI")
+        return balance
+    except Exception as e:
+        print(f"Error checking balance: {e}")
+        return None
+
+
 
 def main():
     # Check and setup wallet address
