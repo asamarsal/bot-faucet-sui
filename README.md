@@ -1,5 +1,7 @@
 # Bot faucet sui testnet
 
+![sui faucet](https://github.com/user-attachments/assets/449d1820-f5ca-42fa-9002-f9f538931751)
+
 A Python-based automation tool for claiming SUI testnet tokens using Selenium WebDriver.
 
 ## Technology Stack
