@@ -32,6 +32,7 @@ A Python-based automation tool for claiming SUI testnet tokens using Selenium We
 - Accesses the faucet through proxy
 - Automatically fills wallet address
 - Claims SUI tokens
+- Check balance
 - Repeats the process
 
 ## Technical Details
